@@ -137,8 +137,8 @@ services:
       - "11054:7054"
     command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
     volumes:
-      - ../artifacts/crypto-config/peerOrganizations/org2.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
-      - ../artifacts/crypto-config/peerOrganizations/org2.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
+      - ../artifacts/crypto-config/peerOrganizations/org3.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
+      - ../artifacts/crypto-config/peerOrganizations/org3.example.com/tlsca/:/etc/hyperledger/fabric-ca-server-tls
     container_name: ca.org3.example.com
     hostname: ca.org3.example.com
     networks:
