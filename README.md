@@ -1,4 +1,4 @@
-# Set of commands to instal Fabric on Linux
+# Set of commands to install Fabric on Linux
 
 `sudo apt-get install curl`
 
