@@ -30,7 +30,7 @@
 
 `sudo apt-get upgrade`
 
-#Installing the latest production release of Fabric
+# Installing the latest production release of Fabric
 
 `sudo curl -sSL https://bit.ly/2ysbOFE | bash -s`
 
