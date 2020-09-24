@@ -3,7 +3,7 @@ export ORDERER_CA=${PWD}/artifacts/crypto-config/ordererOrganizations/example.co
 export PEER0_ORG1_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 export PEER0_ORG2_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 export PEER0_ORG3_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
-export FABRIC_CFG_PATH=${PWD}/config/
+export FABRIC_CFG_PATH=${PWD}/configuration/config/
 
 export CHANNEL_NAME=mychannel
 
@@ -66,7 +66,7 @@ installChaincode(){
 
 queryInstalled(){
     setGlobalsForPeer0Org1
-    peer lifecycle chaincode queryinstalled >&log.txt
+    peer lifecycle chaincode queryinstalled > log.txt 2>&1
     cat log.txt
     PACKAGE_ID=$(sed -n "/${CC_NAME}_${VERSION}/{s/^Package ID: //; s/, Label:.*$//; p;}" log.txt)
     echo PackageID is ${PACKAGE_ID}
@@ -154,7 +154,7 @@ chaincodeInvokeInit(){
 
 chaincodeQuery(){
     setGlobalsForPeer0Org2
-    ./bin/peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["ReadRecord", "5"]}'
+    ./bin/peer chaincode query -C $CHANNEL_NAME -n ${CC_NAME} -c '{"Args":["GetAllRecords"]}'
 }
 
 addRecord(){
@@ -168,17 +168,17 @@ addRecord(){
     -c '{"Args":["AddRecord","2","second"]}'
 }
 
-# presetup
-# packageChaincode
-# installChaincode
-# queryInstalled
-# approveForMyOrg1
-# approveForMyOrg2
-# approveForMyOrg3
-# checkCommitReadyness
-# commitChaincodeDefination
-# queryCommitted
-#  chaincodeInvokeInit
-# sleep 5
+ presetup
+ packageChaincode
+ installChaincode
+ queryInstalled
+ approveForMyOrg1
+ approveForMyOrg2
+ approveForMyOrg3
+ checkCommitReadyness
+ commitChaincodeDefination
+ queryCommitted
+  chaincodeInvokeInit
+ sleep 5
 chaincodeQuery
 # addRecord

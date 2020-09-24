@@ -1,1 +1,1 @@
-docker-compose -f ./network-configuration/docker-compose.yaml up -d
+docker-compose -f ./configuration/docker-compose.yaml up -d

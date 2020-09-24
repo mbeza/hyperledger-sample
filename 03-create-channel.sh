@@ -3,7 +3,7 @@ export ORDERER_CA=${PWD}/artifacts/crypto-config/ordererOrganizations/example.co
 export PEER0_ORG1_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt
 export PEER0_ORG2_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org2.example.com/peers/peer0.org2.example.com/tls/ca.crt
 export PEER0_ORG3_CA=${PWD}/artifacts/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls/ca.crt
-export FABRIC_CFG_PATH=${PWD}/config/
+export FABRIC_CFG_PATH=${PWD}/configuration/config/
 
 export CHANNEL_NAME=mychannel
 
@@ -29,7 +29,7 @@ setGlobalsForPeer0Org3(){
 }
 
 createChannel(){
-    rm -rf ./channel-artifacts/*
+    rm -rf ./artifacts/${CHANNEL_NAME}.block
     setGlobalsForPeer0Org1
     ./bin/peer channel create -o localhost:7050 -c $CHANNEL_NAME --ordererTLSHostnameOverride orderer.example.com -f ./artifacts/${CHANNEL_NAME}.tx --outputBlock ./artifacts/${CHANNEL_NAME}.block --tls $CORE_PEER_TLS_ENABLED --cafile $ORDERER_CA
 
